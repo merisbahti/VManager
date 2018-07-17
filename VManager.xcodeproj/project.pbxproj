@@ -13,7 +13,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		ED324FBB20FD251C0030B67F /* VManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED324FBB20FD251C0030B67F /* VManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = VManager.app; path = /Users/meris/code/VManager/build/Release/VManager.app; sourceTree = "<absolute>"; };
 		ED324FBE20FD251C0030B67F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED324FC020FD251D0030B67F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED324FC320FD251D0030B67F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -36,16 +36,7 @@
 			isa = PBXGroup;
 			children = (
 				ED324FBD20FD251C0030B67F /* VManager */,
-				ED324FBC20FD251C0030B67F /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		ED324FBC20FD251C0030B67F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ED324FBB20FD251C0030B67F /* VManager.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		ED324FBD20FD251C0030B67F /* VManager */ = {
@@ -104,7 +95,7 @@
 				Base,
 			);
 			mainGroup = ED324FB220FD251C0030B67F;
-			productRefGroup = ED324FBC20FD251C0030B67F /* Products */;
+			productRefGroup = ED324FB220FD251C0030B67F;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (

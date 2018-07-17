@@ -10,10 +10,9 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="VManager" customModuleProvider="target">
             <connections>
-                <outlet property="Status" destination="Xsb-7u-dUQ" id="Zpe-i8-Btx"/>
                 <outlet property="status" destination="Xsb-7u-dUQ" id="Kzj-S0-iLj"/>
                 <outlet property="statusMenu" destination="NSi-9a-KHi" id="tIK-8g-61h"/>
             </connections>
@@ -21,8 +20,11 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="NSi-9a-KHi">
             <items>
-                <menuItem title="Text" id="Xsb-7u-dUQ">
+                <menuItem title="loading" id="Xsb-7u-dUQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="actionClicked:" target="Voe-Tx-rLC" id="CMV-TY-tAY"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Yn3-aB-R6S"/>
                 <menuItem title="Quit" id="kiB-KP-S34">
@@ -32,20 +34,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="93" y="94"/>
-        </menu>
-        <menu id="gHN-Rq-aat">
-            <items>
-                <menuItem title="Item 1" id="esZ-Fe-RTu">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 2" id="Ccw-KU-leR">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item 3" id="ypT-5S-QOO">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-            </items>
+            <point key="canvasLocation" x="-40" y="18"/>
         </menu>
     </objects>
 </document>
