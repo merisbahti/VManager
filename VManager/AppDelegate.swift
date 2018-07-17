@@ -9,33 +9,32 @@
 import Cocoa
 
 enum VMStatus {
-    case Running
-    case NoNetwork
-    case Stopped
+    case running
+    case noNetwork
+    case stopped
 }
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     static let vmName = "dev"
     static let vmHostName = "dev.local"
-    var vmStatus = VMStatus.Stopped;
-    
+    var vmStatus = VMStatus.stopped
+
     @IBOutlet weak var statusMenu: NSMenu!
-    
+
     @IBOutlet weak var status: NSMenuItem!
-    
+
     @IBAction func actionClicked(_ sender: NSMenuItem) {
-        switch self.vmStatus
-        {
-        case VMStatus.Stopped:
+        switch self.vmStatus {
+        case VMStatus.stopped:
             startVM()
-        case VMStatus.NoNetwork:
+        case VMStatus.noNetwork:
             startVM()
-        case VMStatus.Running:
+        case VMStatus.running:
             stopVM()
         }
     }
-    
+
     @IBAction func quitClicked(_ sender: NSMenuItem) {
         NSApplication.shared.terminate(self)
     }
@@ -49,38 +48,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-    
+
     func checkVMStatus() {
         self.vmStatus = isVMRunning()
-        switch self.vmStatus
-        {
-        case VMStatus.Stopped:
+        switch self.vmStatus {
+        case VMStatus.stopped:
             self.status.title = "Start VM"
             self.statusItem.title = "😭"
-        case VMStatus.NoNetwork:
+        case VMStatus.noNetwork:
             self.status.title = "Start VM"
             self.statusItem.title = "🙉"
-        case VMStatus.Running:
+        case VMStatus.running:
             self.status.title = "Stop VM"
             self.statusItem.title = "😎"
         }
     }
 
-
     weak var timer: Timer?
-    
+
     func startTimer() {
         self.checkVMStatus()
-        timer?.invalidate()   // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {
-            _ in
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.checkVMStatus()
         }
     }
 }
 
-func isVMRunning() -> VMStatus
-{
+func isVMRunning() -> VMStatus {
     let pingResult = shell(
         launchPath: "/bin/bash",
         arguments: [
@@ -88,8 +83,8 @@ func isVMRunning() -> VMStatus
             "ping -c 1 -t 1 \(AppDelegate.vmHostName)"
         ]
     )
-    if (pingResult.1 == 0) {
-        return VMStatus.Running;
+    if pingResult.1 == 0 {
+        return VMStatus.running
     }
     let result = shell(
         launchPath: "/bin/bash",
@@ -98,11 +93,10 @@ func isVMRunning() -> VMStatus
             "/usr/local/bin/VBoxManage list runningvms | grep \(AppDelegate.vmName)"
         ]
     )
-    return result.1 == 0 ? VMStatus.NoNetwork : VMStatus.Stopped
+    return result.1 == 0 ? VMStatus.noNetwork : VMStatus.stopped
 }
 
-func startVM() -> Void
-{
+func startVM() {
     shell(
         launchPath: "/bin/bash",
         arguments: [
@@ -112,8 +106,7 @@ func startVM() -> Void
     )
 }
 
-func stopVM() -> Void
-{
+func stopVM() {
     shell(
         launchPath: "/bin/bash",
         arguments: [
@@ -123,20 +116,17 @@ func stopVM() -> Void
     )
 }
 
-
-func shell(launchPath: String, arguments: [String]) -> (String?, Int32)
-{
+func shell(launchPath: String, arguments: [String]) -> (String?, Int32) {
     let task = Process()
     task.launchPath = launchPath
     task.arguments = arguments
-    
+
     let pipe = Pipe()
     task.standardOutput = pipe
     task.launch()
     let data = pipe.fileHandleForReading.readDataToEndOfFile()
     let output = String(data: data, encoding: String.Encoding.utf8)
     task.waitUntilExit()
-    
+
     return (output, task.terminationStatus)
 }
-
