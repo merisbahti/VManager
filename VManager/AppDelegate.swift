@@ -12,10 +12,12 @@ enum VMStatus {
     case running
     case noNetwork
     case stopped
+    case pending
 }
 
 enum Action {
-    case toggleVMStatus()
+    case startVM()
+    case stopVM()
     case setVMStatus(VMStatus)
 }
 
@@ -28,16 +30,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     static let vmName = "dev"
     static let vmHostName = "dev.local"
     let store: Store<State, Action> = Store(
-        initialState: State(VMStatus: VMStatus.stopped),
+        initialState: State(VMStatus: VMStatus.pending),
         reducer: { (state: State, action: Action) in
             switch action {
-            case Action.toggleVMStatus():
-                if state.VMStatus == VMStatus.running {
-                    stopVM()
-                } else {
-                    startVM()
-                }
-                return state
+            case Action.startVM():
+                startVM()
+                return State(VMStatus: VMStatus.pending)
+            case Action.stopVM():
+                stopVM()
+                return State(VMStatus: VMStatus.pending)
             case Action.setVMStatus(let vmStatus):
                 return State(VMStatus: vmStatus)
             }
@@ -48,12 +49,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
 
     @IBAction func actionClicked(_ sender: NSMenuItem) {
-        store.dispatch(action: Action.toggleVMStatus())
+        switch store.getState().VMStatus {
+        case VMStatus.noNetwork:
+            store.dispatch(action: Action.startVM())
+        case VMStatus.running:
+            store.dispatch(action: Action.stopVM())
+        case VMStatus.stopped:
+            store.dispatch(action: Action.startVM())
+        default:
+            break
+        }
+        
     }
 
     @IBAction func quitClicked(_ sender: NSMenuItem) {
       NSApplication.shared.terminate(self)
     }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
       statusItem.menu = statusMenu
       self.store.subscribe { (state) in
@@ -68,7 +80,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
           case VMStatus.running:
             self.actionButton.title = "Stop VM"
             self.statusItem.title = "😎"
+          case VMStatus.pending:
+            self.actionButton.title = "Pending..."
+            self.statusItem.title = "🐒"
           }
+            
         }
       }
       startTimer()

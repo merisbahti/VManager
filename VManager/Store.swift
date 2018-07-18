@@ -14,7 +14,7 @@ typealias Reducer<State, Action> = (State, Action) -> State
 class Store<State, Action> {
     private var state: State
     private var listeners: Array<Listener<State>> = []
-    private var reducer: Reducer<State, Action>
+    private let reducer: Reducer<State, Action>
     init(initialState: State, reducer: @escaping Reducer<State, Action>) {
         self.state = initialState
         self.reducer = reducer
@@ -28,5 +28,8 @@ class Store<State, Action> {
         listeners.forEach { (listener) in
             listener(state)
         }
+    }
+    func getState() -> State {
+        return state
     }
 }
