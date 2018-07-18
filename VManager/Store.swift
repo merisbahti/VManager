@@ -13,7 +13,7 @@ typealias Reducer<State, Action> = (State, Action) -> State
 
 class Store<State, Action> {
     private var state: State
-    private var listeners: Array<Listener<State>> = []
+    private var listeners: [Listener<State>] = []
     private let reducer: Reducer<State, Action>
     init(initialState: State, reducer: @escaping Reducer<State, Action>) {
         self.state = initialState

@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     static let vmHostName = "dev.local"
     let store: Store<State, Action> = Store(
         initialState: State(VMStatus: VMStatus.pending),
-        reducer: { (state: State, action: Action) in
+        reducer: { (_, action: Action) in
             switch action {
             case Action.startVM():
                 startVM()
@@ -59,13 +59,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         default:
             break
         }
-        
+
     }
 
     @IBAction func quitClicked(_ sender: NSMenuItem) {
       NSApplication.shared.terminate(self)
     }
-    
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
       statusItem.menu = statusMenu
       self.store.subscribe { (state) in
@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.actionButton.title = "Pending..."
             self.statusItem.title = "🐒"
           }
-            
+
         }
       }
       startTimer()

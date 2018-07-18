@@ -26,15 +26,15 @@ func isVMRunning(callback: @escaping (VMStatus) -> Void) {
   )
 }
 
-fileprivate func shell(launchPath: String, arguments: [String], callback: ((String?, Int32) -> Void)? = nil) {
+private func shell(launchPath: String, arguments: [String], callback: ((String?, Int32) -> Void)? = nil) {
     let task = Process()
     task.launchPath = launchPath
     task.arguments = arguments
-    
+
     let pipe = Pipe()
     task.standardOutput = pipe
     task.launch()
-    
+
     task.terminationHandler = { _ in
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: String.Encoding.utf8)
