@@ -10,15 +10,19 @@
 		ED324FBF20FD251C0030B67F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED324FBE20FD251C0030B67F /* AppDelegate.swift */; };
 		ED324FC120FD251D0030B67F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED324FC020FD251D0030B67F /* Assets.xcassets */; };
 		ED324FC420FD251D0030B67F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED324FC220FD251D0030B67F /* MainMenu.xib */; };
+		ED4BE14620FF72600012999F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4BE14520FF72600012999F /* Store.swift */; };
+		ED4BE14820FFBFE80012999F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4BE14720FFBFE70012999F /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		ED324FBB20FD251C0030B67F /* VManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = VManager.app; path = /Users/meris/code/VManager/build/Release/VManager.app; sourceTree = "<absolute>"; };
 		ED324FBE20FD251C0030B67F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED324FC020FD251D0030B67F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED324FC320FD251D0030B67F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		ED324FC520FD251D0030B67F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED324FC620FD251D0030B67F /* VManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VManager.entitlements; sourceTree = "<group>"; };
+		ED4BE14420FE8B150012999F /* VManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED4BE14520FF72600012999F /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		ED4BE14720FFBFE70012999F /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,17 +40,20 @@
 			isa = PBXGroup;
 			children = (
 				ED324FBD20FD251C0030B67F /* VManager */,
+				ED4BE14420FE8B150012999F /* VManager.app */,
 			);
 			sourceTree = "<group>";
 		};
 		ED324FBD20FD251C0030B67F /* VManager */ = {
 			isa = PBXGroup;
 			children = (
+				ED4BE14720FFBFE70012999F /* Utils.swift */,
 				ED324FBE20FD251C0030B67F /* AppDelegate.swift */,
 				ED324FC020FD251D0030B67F /* Assets.xcassets */,
 				ED324FC220FD251D0030B67F /* MainMenu.xib */,
 				ED324FC520FD251D0030B67F /* Info.plist */,
 				ED324FC620FD251D0030B67F /* VManager.entitlements */,
+				ED4BE14520FF72600012999F /* Store.swift */,
 			);
 			path = VManager;
 			sourceTree = "<group>";
@@ -68,7 +75,7 @@
 			);
 			name = VManager;
 			productName = VManager;
-			productReference = ED324FBB20FD251C0030B67F /* VManager.app */;
+			productReference = ED4BE14420FE8B150012999F /* VManager.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -122,6 +129,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED324FBF20FD251C0030B67F /* AppDelegate.swift in Sources */,
+				ED4BE14820FFBFE80012999F /* Utils.swift in Sources */,
+				ED4BE14620FF72600012999F /* Store.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

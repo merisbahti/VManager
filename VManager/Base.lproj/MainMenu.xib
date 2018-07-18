@@ -13,8 +13,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="VManager" customModuleProvider="target">
             <connections>
-                <outlet property="status" destination="Xsb-7u-dUQ" id="Kzj-S0-iLj"/>
-                <outlet property="statusMenu" destination="NSi-9a-KHi" id="tIK-8g-61h"/>
+                <outlet property="actionButton" destination="Xsb-7u-dUQ" id="bg8-a7-nFk"/>
+                <outlet property="statusMenu" destination="NSi-9a-KHi" id="Vbt-7D-eqM"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -23,7 +23,7 @@
                 <menuItem title="loading" id="Xsb-7u-dUQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="actionClicked:" target="Voe-Tx-rLC" id="CMV-TY-tAY"/>
+                        <action selector="actionClicked:" target="Voe-Tx-rLC" id="D7y-Bm-ZaT"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Yn3-aB-R6S"/>
@@ -34,7 +34,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-40" y="18"/>
+            <point key="canvasLocation" x="-198" y="-182"/>
         </menu>
     </objects>
 </document>
