@@ -16,7 +16,7 @@ func isVMRunning(callback: @escaping (VMStatus) -> Void) {
         launchPath: "/bin/bash",
         arguments: [
           "-c",
-          "/usr/local/bin/VBoxManage list runningvms | grep \(AppDelegate.vmName)"
+          "/usr/local/bin/prlctl list | grep \(AppDelegate.vmName)"
         ],
         callback: { _, code in
           callback(code == 0 ? VMStatus.noNetwork : VMStatus.stopped)
@@ -47,7 +47,7 @@ func startVM() {
     launchPath: "/bin/bash",
     arguments: [
       "-c",
-      "/usr/local/bin/VBoxManage startvm \(AppDelegate.vmName) --type headless"
+      "/usr/local/bin/prlctl start \(AppDelegate.vmName)"
     ]
   )
 }
@@ -57,7 +57,7 @@ func stopVM() {
     launchPath: "/bin/bash",
     arguments: [
       "-c",
-      "/usr/local/bin/VBoxManage controlvm \(AppDelegate.vmName) poweroff"
+      "/usr/local/bin/prlctl stop \(AppDelegate.vmName)"
     ]
   )
 }

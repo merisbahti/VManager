@@ -28,7 +28,7 @@ struct State {
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     static let vmName = "dev"
-    static let vmHostName = "dev.local"
+    static let vmHostName = "dev"
     let store: Store<State, Action> = Store(
         initialState: State(VMStatus: VMStatus.pending),
         reducer: { (_, action: Action) in
